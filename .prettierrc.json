@@ -1,0 +1,14 @@
+{
+  // 此字段指定了 JSON 文件的模式。在这里，它指向 Prettier 的模式，用于验证配置文件的正确性。
+  "$schema": "https://json.schemastore.org/prettierrc",
+  //semi: 当设置为 false 时，表示 Prettier 不会在语句的末尾添加分号。在 JavaScript 中，分号在语法上是可选的，一些开发者喜欢省略它们。
+  "semi": false,
+  // tabWidth: 指定每个缩进级别的空格数。在这里，代码将以 2 个空格的缩进进行格式化。
+  "tabWidth": 2,
+  // singleQuote: 当设置为 true 时，Prettier 将使用单引号 (') 表示字符串，它会尽可能将双引号字符串转换为单引号。
+  "singleQuote": true,
+  // printWidth: 指定代码的最大行宽度。如果一行的字符数超过这个限制，Prettier 会尝试将代码换行以适应指定的限制。在这里，限制设置为 100 个字符。
+  "printWidth": 100,
+  // trailingComma: 指定是否在数组或对象的最后一个元素后添加尾随逗号。当设置为 "none" 时，不会添加尾随逗号。
+  "trailingComma": "none"
+}
