@@ -6,6 +6,8 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*"
+    // 自动导入
+    ,"./src/types/auto-imports.d.ts"
   ],
   "compilerOptions": {
     "composite": true,

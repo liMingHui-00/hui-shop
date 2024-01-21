@@ -1,9 +1,13 @@
 <script setup lang="ts">
-console.log(import.meta.env.VITE_A);
-
+const num = ref(10)
+onMounted(()=>{
+  console.log(11111);
+  
+})
+const n = computed(()=>num)
 </script>
 
 <template>
-  <div>app</div>
+  <div>app--{{ n }}</div>
 </template>
 
