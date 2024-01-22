@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const num = ref(10)
-onMounted(()=>{
-  console.log(11111);
-  
-})
-const n = computed(()=>num)
+
+
 </script>
 
 <template>
-  <div>app*****{{ n }}</div>
+  <h3>app</h3>
   <hello></hello>
 </template>
+<style scoped lang="scss">
 
+
+
+</style>

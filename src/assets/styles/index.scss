@@ -1,0 +1,9 @@
+@import 'normalize.css';
+@import './variables.css';
+html{
+  // 视口宽度是375rem
+font-size: calc(100vw/375);
+}
+body{
+ font-size: 12px;
+}
