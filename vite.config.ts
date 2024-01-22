@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // 导入自动导包的工具
 import autoImport from 'unplugin-auto-import/vite';
-
+import Components from 'unplugin-vue-components/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,6 +20,9 @@ export default defineConfig({
         enabled:true
       },
       vueTemplate:true
+    }),
+    Components({
+      dts:'./src/types/components.d.ts'
     })
   ],
   resolve: {

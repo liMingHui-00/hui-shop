@@ -8,6 +8,7 @@ const n = computed(()=>num)
 </script>
 
 <template>
-  <div>app--{{ n }}</div>
+  <div>app*****{{ n }}</div>
+  <hello></hello>
 </template>
 
