@@ -82,6 +82,7 @@
     "watchEffect": true,
     "watchPostEffect": true,
     "watchSyncEffect": true,
-    "Home": true
+    "Home": true,
+    "svgComponentD": true
   }
 }
