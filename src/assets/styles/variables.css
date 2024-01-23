@@ -1,4 +1,6 @@
 html{
   --primary-color : #242424;
-  --bottom-nav-height:60rem
+  --bottom-nav-height:60rem;
+  --border-top-color:#ddd;
+  --text-color: #999;
 }

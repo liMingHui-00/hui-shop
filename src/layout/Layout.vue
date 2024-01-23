@@ -1,5 +1,5 @@
 <template>
-  <main><router-view></router-view></main>
+ <router-view class="main"></router-view>
   <div class="bottom-nav">
     <router-link to="home">
       <svg-icon name="home"></svg-icon>
@@ -21,26 +21,30 @@
 </script>
 
 <style lang="scss" scoped>
-main {
+.main {
   height: calc(100vh - var(--bottom-nav-height));
   overflow: auto;
 }
-
 .bottom-nav {
   height: var(--bottom-nav-height);
   display: flex;
   justify-content: space-around;
-  align-items: center;
   position: fixed;
   width: 375rem;
-  border-top: 1px #ddd solid;
+  border-top: 1px var(--border-top-color) solid;
   bottom: 0;
 }
 a{
   font-size: 26rem;
-  color: #999;
+  display: flex;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
+  color:var(--text-color);
+  -webkit-tap-highlight-color: transparent;
 }
 .router-link-active{
-  color:#000
+  color:var(--primary-color)
 }
+
 </style>

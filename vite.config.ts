@@ -25,7 +25,9 @@ export default defineConfig({
     }),
     // 组件自动导入   默认是在component中的组件才会自动导入
     Components({
-      // dirs:['./src/components','./src/layout'],  可以通过配置来达到自动导入你想要导入的组件
+      //  可以通过配置来达到自动导入你想要导入的组件
+      dirs:['./src/components','./src/layout','./src/views'],
+       
       dts: './src/types/components.d.ts'
     }),
     // 处理svg

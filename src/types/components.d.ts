@@ -7,9 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Cart: typeof import('./../views/Cart.vue')['default']
+    Category: typeof import('./../views/Home/Category.vue')['default']
     Hello: typeof import('./../components/Hello.vue')['default']
+    Home: typeof import('./../views/Home/Home.vue')['default']
     Layout: typeof import('./../layout/Layout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Search: typeof import('./../views/Search.vue')['default']
+    User: typeof import('./../views/User.vue')['default']
   }
 }
