@@ -7,6 +7,8 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const Home: typeof import('../views/Home.vue')['default']
+  const SCROLLELE: typeof import('../constant/key')['SCROLLELE']
+  const SCROLL_ELE: typeof import('../constant/key')['SCROLL_ELE']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
@@ -70,6 +72,7 @@ declare global {
   const useCounterStore: typeof import('../stores/counter')['useCounterStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useFetch: typeof import('../utils/useFetch')['default']
   const useLink: typeof import('vue-router')['useLink']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
@@ -90,6 +93,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly SCROLL_ELE: UnwrapRef<typeof import('../constant/key')['SCROLL_ELE']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -153,6 +157,7 @@ declare module 'vue' {
     readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
@@ -166,6 +171,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly SCROLL_ELE: UnwrapRef<typeof import('../constant/key')['SCROLL_ELE']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -229,6 +235,7 @@ declare module '@vue/runtime-core' {
     readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>

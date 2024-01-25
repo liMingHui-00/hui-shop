@@ -16,12 +16,37 @@
 
 // 创建一个ref数组
 const products = ref<Product[]>([])
+// 创建一个页码数
+const pagenum = ref(1)
+// 注入依赖
+const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
 
 // 加载数据
-fetch(import.meta.env.VITE_BASE_API + '/products')
+fetch(import.meta.env.VITE_BASE_API + `/products?page=${pagenum.value}`)
   .then(res => res.json() as Promise<Page<Product>>)
   .then(data => products.value = data.data)
-
+// 滚动加载
+const newLocal = () => {
+  // 判断是否滚动到底
+  if (scrollEle) {
+    if (scrollEle.value.scrollHeight-scrollEle.value.scrollTop===scrollEle.value.clientHeight) {
+      pagenum.value++
+      console.log(pagenum.value);
+    }
+  }
+};
+// 滚动加载  当窗口加载到最后时，使页码自增，加载下一页
+onMounted(() => {
+  if (scrollEle) {
+    scrollEle.value.addEventListener('scroll', newLocal)
+  }
+})
+onUnmounted(() => {
+  // 移除事件
+  if (scrollEle) {
+    scrollEle.value.removeEventListener('scroll', newLocal)
+  }
+})
 // 计算属性处理图片地址
 const productsWithCorrectImage = computed(() => {
   return products.value.map(item => {
@@ -59,9 +84,11 @@ const productsWithCorrectImage = computed(() => {
 
   .price {
     text-align: center;
+
     &::before {
       content: '$';
       text-align: center;
     }
   }
-}</style>
+}
+</style>

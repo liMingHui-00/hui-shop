@@ -83,6 +83,9 @@
     "watchPostEffect": true,
     "watchSyncEffect": true,
     "Home": true,
-    "svgComponentD": true
+    "svgComponentD": true,
+    "useFetch": true,
+    "SCROLLELE": true,
+    "SCROLL_ELE": true
   }
 }
