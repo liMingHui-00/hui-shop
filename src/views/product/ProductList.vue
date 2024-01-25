@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="product_list">
     <div v-for="item in productsWithCorrectImage" :key="item.id">
       <div class="img-wrap">
         <img :src="item.correctImageUrl">
       </div>
-      <h2 class="name">{{ item.name }}</h2>
-      <h3 class="price">{{ item.price }}</h3>
+      <div class="product_name_price">
+        <h2 class="name">{{ item.name }}</h2>
+        <h3 class="price">{{ item.price }}</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -30,3 +32,36 @@ const productsWithCorrectImage = computed(() => {
   });
 });
 </script>
+<style scoped lang="scss">
+.product_list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rem;
+
+  .img-wrap {
+    overflow: hidden;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: .2);
+    justify-content: center;
+  }
+
+  .product_name_price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name {
+    color: var(--text-color);
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  .price {
+    text-align: center;
+    &::before {
+      content: '$';
+      text-align: center;
+    }
+  }
+}</style>
