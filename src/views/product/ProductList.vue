@@ -20,30 +20,40 @@ const products = ref<Product[]>([])
 const pagenum = ref(1)
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
-
+const url = computed(() => `/products?page=${pagenum.value}` )
+// const bottomOffset = 50
 // 加载数据
-fetch(import.meta.env.VITE_BASE_API + `/products?page=${pagenum.value}`)
+const loadData =  () => {
+  fetch(import.meta.env.VITE_BASE_API + url.value)
   .then(res => res.json() as Promise<Page<Product>>)
-  .then(data => products.value = data.data)
+  .then(data => products.value = [...products.value,...data.data])
+  .catch(error =>{
+    console.log(error)})
+}
+
+//监视pagenum的变化
+watch(pagenum,(newValue,oldValue)=>{
+  if (newValue !== oldValue) {
+    loadData()
+  }
+})
 // 滚动加载
 const newLocal = () => {
   // 判断是否滚动到底
   if (scrollEle) {
-    if (scrollEle.value.scrollHeight-scrollEle.value.scrollTop===scrollEle.value.clientHeight) {
+    const bottomReached = scrollEle.value.scrollHeight - scrollEle.value.scrollTop <= scrollEle.value.clientHeight + 100;
+    if (bottomReached) {
+      // 使页码自增，加载下一页
       pagenum.value++
-      console.log(pagenum.value);
     } 
   }
 };
 // 滚动加载  当窗口加载到最后时，使页码自增，加载下一页
 onMounted(() => {
+  // 初次加载数据
+  loadData()
   if (scrollEle) {
-    scrollEle.value.addEventListener('scroll', () => {
-      if(scrollEle.value.scrollHeight - scrollEle.value.scrollTop === scrollEle.value.clientHeight+1){
-        console.log('到底了');
-        
-      }
-    })
+    scrollEle.value.addEventListener('scroll', newLocal)
   }
 })
 onUnmounted(() => {

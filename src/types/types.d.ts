@@ -13,7 +13,7 @@ interface Product{
 interface Page<T>{
   data:Array<T>
   totalItems:number
-  totalPage:number
+  totalPages:number
   currentPage:number
   itemsPerPage:number
 }
