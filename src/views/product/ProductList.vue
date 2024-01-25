@@ -32,13 +32,18 @@ const newLocal = () => {
     if (scrollEle.value.scrollHeight-scrollEle.value.scrollTop===scrollEle.value.clientHeight) {
       pagenum.value++
       console.log(pagenum.value);
-    }
+    } 
   }
 };
 // 滚动加载  当窗口加载到最后时，使页码自增，加载下一页
 onMounted(() => {
   if (scrollEle) {
-    scrollEle.value.addEventListener('scroll', newLocal)
+    scrollEle.value.addEventListener('scroll', () => {
+      if(scrollEle.value.scrollHeight - scrollEle.value.scrollTop === scrollEle.value.clientHeight+1){
+        console.log('到底了');
+        
+      }
+    })
   }
 })
 onUnmounted(() => {
