@@ -6,23 +6,19 @@ const products = ref<Product[]>([])
 const pageNumber = ref(1)
 
 // 加载数据
-// fetch(import.meta.env.VITE_BASE_API + '/products')
-//   .then((res) => res.json() as Promise<Page<Product>>)
-//   .then((data) => (products.value = data.data))
-const url = computed(() => `/products?page=${pageNumber.value}`)
-
-// const { data, loading } = useFetch<Page<Product>>(url)
-const { data } = useFetch<Page<Product>>(url)
+const url = computed(() => `products?page=${pageNumber.value}`)
+const { data,isFetching } = useFetch<Page<Product>>(url).json()
 
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
 
 const scrollHandler = () => {
   if (scrollEle) {
-    if (scrollEle.value.scrollHeight - scrollEle.value.scrollTop < scrollEle.value.clientHeight+1) {
+    if (scrollEle.value.scrollHeight - scrollEle.value.scrollTop < scrollEle.value.clientHeight+10) {
+      // 如果滚动到底部  pagenum增加
       if (data.value && pageNumber.value < data.value.totalPages) {
+        // 判断是否达到最后一页
         pageNumber.value++
-        console.log(pageNumber.value);
       }
     }
   }
@@ -58,10 +54,10 @@ onUnmounted(() => {
       <h3 class="price">{{ item.price }}</h3>
     </div>
   </div>
-  <!-- <p class="msg" v-show="isFetching">---- 加载中 ----</p>
-  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber"> -->
-    <!-- ---- 已经加载到最后 ----
-  </p> -->
+  <p class="msg" v-show="isFetching">---- 加载中 ----</p>
+  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber"> 
+ ---- 已经加载到最后 ----
+  </p>
 </template>
 
 <style lang="scss" scoped>

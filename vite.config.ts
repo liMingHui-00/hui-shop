@@ -15,7 +15,7 @@ export default defineConfig({
     autoImport({
       // 指定哪些需要自动导入
       imports: ['vue', 'vue-router', 'pinia',{
-        '@vueuse/core':[['useFetch','useFetch2']]
+        '@vueuse/core':['createFetch']
       }],
       dts: './src/types/auto-imports.d.ts',
       dirs: ['./src/**/*'],

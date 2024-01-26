@@ -87,6 +87,7 @@
     "useFetch": true,
     "SCROLLELE": true,
     "SCROLL_ELE": true,
-    "useFetch2": true
+    "useFetch2": true,
+    "createFetch": true
   }
 }
