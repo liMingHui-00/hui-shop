@@ -73,6 +73,7 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useFetch: typeof import('../utils/useFetch')['default']
+  const useFetch2: typeof import('@vueuse/core')['useFetch']
   const useLink: typeof import('vue-router')['useLink']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
@@ -157,6 +158,7 @@ declare module 'vue' {
     readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useFetch2: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
@@ -235,6 +237,7 @@ declare module '@vue/runtime-core' {
     readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useFetch2: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>

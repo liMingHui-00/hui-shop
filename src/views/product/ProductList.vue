@@ -1,109 +1,95 @@
-<template>
-  <div class="product_list">
-    <div v-for="item in productsWithCorrectImage" :key="item.id">
-      <div class="img-wrap">
-        <img :src="item.correctImageUrl">
-      </div>
-      <div class="product_name_price">
-        <h2 class="name">{{ item.name }}</h2>
-        <h3 class="price">{{ item.price }}</h3>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-
 // 创建一个ref数组
 const products = ref<Product[]>([])
-// 创建一个页码数
-const pagenum = ref(1)
+
+// 创建一个页码
+const pageNumber = ref(1)
+
+// 加载数据
+// fetch(import.meta.env.VITE_BASE_API + '/products')
+//   .then((res) => res.json() as Promise<Page<Product>>)
+//   .then((data) => (products.value = data.data))
+const url = computed(() => `/products?page=${pageNumber.value}`)
+
+// const { data, loading } = useFetch<Page<Product>>(url)
+const { data } = useFetch<Page<Product>>(url)
+
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
-const url = computed(() => `/products?page=${pagenum.value}` )
-// const bottomOffset = 50
-// 加载数据
-const loadData =  () => {
-  fetch(import.meta.env.VITE_BASE_API + url.value)
-  .then(res => res.json() as Promise<Page<Product>>)
-  .then(data => products.value = [...products.value,...data.data])
-  .catch(error =>{
-    console.log(error)})
-}
 
-//监视pagenum的变化
-watch(pagenum,(newValue,oldValue)=>{
-  if (newValue !== oldValue) {
-    loadData()
-  }
-})
-// 滚动加载
-const newLocal = () => {
-  // 判断是否滚动到底
+const scrollHandler = () => {
   if (scrollEle) {
-    const bottomReached = scrollEle.value.scrollHeight - scrollEle.value.scrollTop <= scrollEle.value.clientHeight + 100;
-    if (bottomReached) {
-      // 使页码自增，加载下一页
-      pagenum.value++
-    } 
-  }
-};
-// 滚动加载  当窗口加载到最后时，使页码自增，加载下一页
-onMounted(() => {
-  // 初次加载数据
-  loadData()
-  if (scrollEle) {
-    scrollEle.value.addEventListener('scroll', newLocal)
-  }
-})
-onUnmounted(() => {
-  // 移除事件
-  if (scrollEle) {
-    scrollEle.value.removeEventListener('scroll', newLocal)
-  }
-})
-// 计算属性处理图片地址
-const productsWithCorrectImage = computed(() => {
-  return products.value.map(item => {
-    return {
-      ...item,
-      correctImageUrl: item.image_url.replace(".avif", "")
-    };
-  });
-});
-</script>
-<style scoped lang="scss">
-.product_list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10rem;
-
-  .img-wrap {
-    overflow: hidden;
-    display: flex;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: .2);
-    justify-content: center;
-  }
-
-  .product_name_price {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .name {
-    color: var(--text-color);
-    font-size: 5rem;
-    text-align: center;
-  }
-
-  .price {
-    text-align: center;
-
-    &::before {
-      content: '$';
-      text-align: center;
+    if (scrollEle.value.scrollHeight - scrollEle.value.scrollTop < scrollEle.value.clientHeight+1) {
+      if (data.value && pageNumber.value < data.value.totalPages) {
+        pageNumber.value++
+        console.log(pageNumber.value);
+      }
     }
   }
+}
+
+watchEffect(() => {
+  if (data.value) {
+    products.value.push(...data.value.data)
+  }
+})
+
+// 当窗口滚动到最后时，使页码自增，加载下一页
+onMounted(() => {
+  if (scrollEle) {
+    scrollEle.value.addEventListener('scroll', scrollHandler)
+  }
+})
+
+onUnmounted(() => {
+  if (scrollEle) {
+    scrollEle.value.removeEventListener('scroll', scrollHandler)
+  }
+})
+</script>
+
+<template>
+  <div class="product-list">
+    <div class="product" v-for="item in products" :key="item.id">
+      <div class="img-wrap">
+        <img :src="item.image_url" :alt="item.name" />
+      </div>
+      <h2 class="name">{{ item.name }}</h2>
+      <h3 class="price">{{ item.price }}</h3>
+    </div>
+  </div>
+  <!-- <p class="msg" v-show="isFetching">---- 加载中 ----</p>
+  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber"> -->
+    <!-- ---- 已经加载到最后 ----
+  </p> -->
+</template>
+
+<style lang="scss" scoped>
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .product {
+    padding: 20rem;
+    .img-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .name {
+      font-size: 15rem;
+      color: var(--light-color);
+    }
+
+    .price {
+      &::before {
+        content: '￥';
+      }
+    }
+  }
+}
+.msg {
+  text-align: center;
+  font-size: 14rem;
 }
 </style>

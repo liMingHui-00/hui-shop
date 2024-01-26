@@ -86,6 +86,7 @@
     "svgComponentD": true,
     "useFetch": true,
     "SCROLLELE": true,
-    "SCROLL_ELE": true
+    "SCROLL_ELE": true,
+    "useFetch2": true
   }
 }
