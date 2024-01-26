@@ -7,8 +7,7 @@ const pageNumber = ref(1)
 
 // 加载数据
 const url = computed(() => `products?page=${pageNumber.value}`)
-const { data, isFetching } = useFetch<Page<Product>>(url).json()
-
+const { data, isFetching } = useFetch(url).json<Page<Product>>()
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
 
@@ -28,7 +27,6 @@ useInfiniteScroll(scrollEle, () => {
   // 节流
   interval:200
 })
-
 
 </script>
 

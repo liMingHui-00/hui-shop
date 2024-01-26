@@ -1,26 +1,59 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      component: () => import('@/layout/Layout.vue'),
-      children: [{
-        path: 'cart',
-        component: () => import('@/views/Cart.vue')
-      }, {
-        path: 'search',
-        component: () => import('@/views/Search.vue')
-      }, {
-        path: 'user',
-        component: () => import('@/views/User.vue')
-      }, {
+const layout = () => import('@/layout/Layout.vue')
+const routes: RouteRecordRaw[] = [
+  {
+    path:'/'
+    ,redirect:'/home'
+  },
+
+  {
+    path: '/',
+    component: layout,
+    children: [
+      {
         path: 'home',
-        component: () => import('@/views/Home/Home.vue')
-      }]
-    },
-  ]
-})
+        component: () => import('@/views/Home/Home.vue'),
+        children:[{
+          path:':categoryId',
+        component: () => import('@/views/Home/Home.vue'),
+        }]
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: layout,
+    children: [
+      {
+        path: '/search',
+        component: () => import('@/views/Search.vue'),
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: layout,
+    children: [
+      {
+        path: 'cart',
+        component: () => import('@/views/Cart.vue'),
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: layout,
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/User.vue'),
+      },
+    ],
+  },
+]
 
-export default router
+export default createRouter({
+  history: createWebHistory(),
+  routes,
+})

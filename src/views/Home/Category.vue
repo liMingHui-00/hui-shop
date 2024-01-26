@@ -1,9 +1,9 @@
 <template>
   <div class="category-list">
-    <div class="category-item" v-for="item in categoryData" :key="item.id">
+    <router-link :to='`/home/${item.id}`' class="category-item" v-for="item in categoryData" :key="item.id">
       <SvgIcon :name="item.icon"></SvgIcon>
       <span>{{ item.name }}</span>
-    </div>
+    </router-link>
   </div>
 
 </template>
@@ -56,11 +56,17 @@ let categoryData: Array<{
   flex-wrap: wrap;
   justify-content: space-between;
   font-size: 16rem;
-
+  color: var(--primary-color);
+    
+  .router-link-active{
+  color:var(--height-color)
+}
   .category-item {
     width: 25%;
     margin-bottom: 10px;
     text-align: center;
+
+
 
     span {
       display: block;

@@ -1,16 +1,16 @@
 <template>
  <router-view class="main"></router-view>
   <div class="bottom-nav">
-    <router-link to="home">
+    <router-link to="/home">
       <svg-icon name="home"></svg-icon>
     </router-link>
-    <router-link to="search">
+    <router-link to="/search">
       <svg-icon name="search"></svg-icon>
     </router-link>
-    <router-link to="cart">
+    <router-link to="/cart">
       <svg-icon name="cart"></svg-icon>
     </router-link>
-    <router-link to="user">
+    <router-link to="/user">
       <svg-icon name="user"></svg-icon>
     </router-link>
   </div>
@@ -40,11 +40,11 @@ a{
   width: 25%;
   justify-content: center;
   align-items: center;
-  color:var(--text-color);
+  color:var(--primary-color);
   -webkit-tap-highlight-color: transparent;
 }
 .router-link-active{
-  color:var(--primary-color)
+  color:var(--height-color)
 }
 
 </style>
