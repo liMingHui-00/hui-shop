@@ -14,8 +14,8 @@ export default defineConfig({
     vue(),
     autoImport({
       // 指定哪些需要自动导入
-      imports: ['vue', 'vue-router', 'pinia',{
-        '@vueuse/core':['createFetch']
+      imports: ['vue', 'vue-router', 'pinia', {
+        '@vueuse/core': ['createFetch', 'useInfiniteScroll']
       }],
       dts: './src/types/auto-imports.d.ts',
       dirs: ['./src/**/*'],
@@ -28,8 +28,8 @@ export default defineConfig({
     // 组件自动导入   默认是在component中的组件才会自动导入
     Components({
       //  可以通过配置来达到自动导入你想要导入的组件
-      dirs:['./src/components','./src/layout','./src/views'],
-       
+      dirs: ['./src/components', './src/layout', './src/views'],
+
       dts: './src/types/components.d.ts'
     }),
     // 处理svg

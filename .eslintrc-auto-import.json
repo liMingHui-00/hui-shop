@@ -88,6 +88,8 @@
     "SCROLLELE": true,
     "SCROLL_ELE": true,
     "useFetch2": true,
-    "createFetch": true
+    "createFetch": true,
+    "useInfiniteScroll ": true,
+    "useInfiniteScroll": true
   }
 }

@@ -7,22 +7,10 @@ const pageNumber = ref(1)
 
 // 加载数据
 const url = computed(() => `products?page=${pageNumber.value}`)
-const { data,isFetching } = useFetch<Page<Product>>(url).json()
+const { data, isFetching } = useFetch<Page<Product>>(url).json()
 
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
-
-const scrollHandler = () => {
-  if (scrollEle) {
-    if (scrollEle.value.scrollHeight - scrollEle.value.scrollTop < scrollEle.value.clientHeight+10) {
-      // 如果滚动到底部  pagenum增加
-      if (data.value && pageNumber.value < data.value.totalPages) {
-        // 判断是否达到最后一页
-        pageNumber.value++
-      }
-    }
-  }
-}
 
 watchEffect(() => {
   if (data.value) {
@@ -30,18 +18,18 @@ watchEffect(() => {
   }
 })
 
-// 当窗口滚动到最后时，使页码自增，加载下一页
-onMounted(() => {
-  if (scrollEle) {
-    scrollEle.value.addEventListener('scroll', scrollHandler)
+useInfiniteScroll(scrollEle, () => {
+  if (data.value && pageNumber.value < data.value.totalPages) {
+    // 判断是否达到最后一页
+    pageNumber.value++
   }
+}, {
+  distance: 10,
+  // 节流
+  interval:200
 })
 
-onUnmounted(() => {
-  if (scrollEle) {
-    scrollEle.value.removeEventListener('scroll', scrollHandler)
-  }
-})
+
 </script>
 
 <template>
@@ -55,8 +43,8 @@ onUnmounted(() => {
     </div>
   </div>
   <p class="msg" v-show="isFetching">---- 加载中 ----</p>
-  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber"> 
- ---- 已经加载到最后 ----
+  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
+    ---- 已经加载到最后 ----
   </p>
 </template>
 
@@ -64,8 +52,10 @@ onUnmounted(() => {
 .product-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   .product {
     padding: 20rem;
+
     .img-wrap {
       border-radius: 20px;
       overflow: hidden;
@@ -84,8 +74,8 @@ onUnmounted(() => {
     }
   }
 }
+
 .msg {
   text-align: center;
   font-size: 14rem;
-}
-</style>
+}</style>
