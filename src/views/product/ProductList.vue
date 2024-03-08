@@ -7,13 +7,19 @@ const pageNumber = ref(1)
 
 // 获取路径
 const route = useRoute()
+const props = defineProps<{
+  keyword?: string
+}>()
+console.log(props.keyword);
+
 // 加载数据
-const url = computed(() => 
-{
+const url = computed(() => {
   if (route.params.categoryId) {
     return `products/category/${route.params.categoryId}`
-  }else{
-return  `products?page=${pageNumber.value}`
+  } else if (props.keyword) {
+    return `products/search?name=${props.keyword}`
+  } else {
+    return `products?page=${pageNumber.value}`
   }
 }
 
@@ -24,9 +30,9 @@ const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
 
 watchEffect(() => {
   if (data.value) {
-    if (data.value.currentPage ===1) {
+    if (data.value.currentPage === 1) {
       products.value = data.value.data
-    }else{
+    } else {
       products.value.push(...data.value.data)
     }
   }
@@ -43,26 +49,27 @@ useInfiniteScroll(scrollEle, () => {
 }, {
   distance: 10,
   // 节流
-  interval:200
+  interval: 200
 })
 
 </script>
 
 <template>
   <div>
-  <div class="product-list">
-    <div class="product" v-for="item in products" :key="item.id">
-      <div class="img-wrap">
-        <img :src="item.image_url" :alt="item.name" />
+    <div class="product-list">
+      <div class="product" v-for="item in products" :key="item.id">
+        <div class="img-wrap">
+          <img :src="item.image_url" :alt="item.name" />
+        </div>
+        <h2 class="name">{{ item.name }}</h2>
+        <h3 class="price">{{ item.price }}</h3>
       </div>
-      <h2 class="name">{{ item.name }}</h2>
-      <h3 class="price">{{ item.price }}</h3>
     </div>
+    <p class="msg" v-show="isFetching">---- 加载中 ----</p>
+    <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
+      ---- 已经加载到最后 ----
+    </p>
   </div>
-  <p class="msg" v-show="isFetching">---- 加载中 ----</p>
-  <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
-    ---- 已经加载到最后 ----
-  </p>  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -77,7 +84,8 @@ useInfiniteScroll(scrollEle, () => {
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      img{
+
+      img {
         width: 100%;
       }
     }
@@ -98,4 +106,5 @@ useInfiniteScroll(scrollEle, () => {
 .msg {
   text-align: center;
   font-size: 14rem;
-}</style>
+}
+</style>

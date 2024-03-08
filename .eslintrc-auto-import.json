@@ -90,6 +90,8 @@
     "useFetch2": true,
     "createFetch": true,
     "useInfiniteScroll ": true,
-    "useInfiniteScroll": true
+    "useInfiniteScroll": true,
+    "refDebounced ": true,
+    "refDebounced": true
   }
 }
