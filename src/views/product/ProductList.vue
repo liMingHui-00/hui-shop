@@ -37,6 +37,9 @@ watchEffect(() => {
     }
   }
 })
+watch(() => props.keyword, () => {
+  pageNumber.value = 1
+})
 onBeforeRouteUpdate(() => {
   pageNumber.value = 1
 })
@@ -65,6 +68,7 @@ useInfiniteScroll(scrollEle, () => {
         <h3 class="price">{{ item.price }}</h3>
       </div>
     </div>
+    <p class="msg" v-show="products.length === 0">没有数据！</p>
     <p class="msg" v-show="isFetching">---- 加载中 ----</p>
     <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
       ---- 已经加载到最后 ----
