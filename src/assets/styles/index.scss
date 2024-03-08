@@ -12,6 +12,9 @@ color: var(--primary-color);
 a{
   text-decoration: none;
   color: inherit;
+  // 取消高亮显示
+  -webkit-tap-highlight-color: transparent;
+
 }
 body{
   box-sizing: border-box;

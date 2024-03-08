@@ -31,6 +31,7 @@ useInfiniteScroll(scrollEle, () => {
 </script>
 
 <template>
+  <div>
   <div class="product-list">
     <div class="product" v-for="item in products" :key="item.id">
       <div class="img-wrap">
@@ -43,7 +44,7 @@ useInfiniteScroll(scrollEle, () => {
   <p class="msg" v-show="isFetching">---- 加载中 ----</p>
   <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
     ---- 已经加载到最后 ----
-  </p>
+  </p>  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -58,6 +59,9 @@ useInfiniteScroll(scrollEle, () => {
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      img{
+        width: 100%;
+      }
     }
 
     .name {

@@ -65,9 +65,6 @@ let categoryData: Array<{
     width: 25%;
     margin-bottom: 10px;
     text-align: center;
-
-
-
     span {
       display: block;
     }
