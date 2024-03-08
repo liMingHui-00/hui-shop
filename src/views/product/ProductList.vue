@@ -5,16 +5,34 @@ const products = ref<Product[]>([])
 // 创建一个页码
 const pageNumber = ref(1)
 
+// 获取路径
+const route = useRoute()
 // 加载数据
-const url = computed(() => `products?page=${pageNumber.value}`)
+const url = computed(() => 
+{
+  if (route.params.categoryId) {
+    return `products/category/${route.params.categoryId}`
+  }else{
+return  `products?page=${pageNumber.value}`
+  }
+}
+
+)
 const { data, isFetching } = useFetch(url).json<Page<Product>>()
 // 注入依赖
 const scrollEle = inject<Ref<HTMLDivElement>>(SCROLL_ELE)
 
 watchEffect(() => {
   if (data.value) {
-    products.value.push(...data.value.data)
+    if (data.value.currentPage ===1) {
+      products.value = data.value.data
+    }else{
+      products.value.push(...data.value.data)
+    }
   }
+})
+onBeforeRouteUpdate(() => {
+  pageNumber.value = 1
 })
 
 useInfiniteScroll(scrollEle, () => {
