@@ -1,9 +1,9 @@
 <template>
-  <div >
-    <div class="main" ref="scrollEle"> 
-      <router-view ></router-view>
+  <div>
+    <div class="main" ref="scrollEle">
+      <router-view></router-view>
     </div>
-   <nav-bottom></nav-bottom>
+    <nav-bottom></nav-bottom>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 // 创建一个变量来接收div
 const scrollEle = ref(null)
 // 把div传递给product List组件
-provide(SCROLL_ELE,scrollEle)
+provide(SCROLL_ELE, scrollEle)
 </script>
 
 <style lang="scss" scoped>

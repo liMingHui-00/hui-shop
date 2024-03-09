@@ -60,13 +60,14 @@ useInfiniteScroll(scrollEle, () => {
 <template>
   <div>
     <div class="product-list">
-      <div class="product" v-for="item in products" :key="item.id">
+      <!-- /products/2 -->
+      <router-link class="product" v-for="item in products" :to='`/products/${item.id}`' :key="item.id">
         <div class="img-wrap">
           <img :src="item.image_url" :alt="item.name" />
         </div>
         <h2 class="name">{{ item.name }}</h2>
         <h3 class="price">{{ item.price }}</h3>
-      </div>
+      </router-link>
     </div>
     <p class="msg" v-show="products.length === 0">没有数据！</p>
     <p class="msg" v-show="isFetching">---- 加载中 ----</p>

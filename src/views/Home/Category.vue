@@ -57,17 +57,20 @@ let categoryData: Array<{
   justify-content: space-between;
   font-size: 16rem;
   color: var(--primary-color);
-    
-  .router-link-active{
-  color:var(--height-color)
-}
+
+  .router-link-active {
+    color: var(--height-color)
+  }
+
   .category-item {
     width: 25%;
     margin-bottom: 10px;
     text-align: center;
+
     span {
       display: block;
     }
   }
 
-}</style>
+}
+</style>

@@ -1,11 +1,10 @@
 <template>
-
   <div ref="scrollEle">
-<h1 class="title">辉店</h1>
-<!-- 分类列表 -->
-<Category></Category>
-<!-- 商品列表 -->
-<ProductList></ProductList>
+    <h1 class="title">辉店</h1>
+    <!-- 分类列表 -->
+    <Category></Category>
+    <!-- 商品列表 -->
+    <ProductList></ProductList>
   </div>
 </template>
 
@@ -14,7 +13,7 @@
 </script>
 
 <style lang="scss" scoped>
-.title{
+.title {
   text-align: center;
 }
 </style>

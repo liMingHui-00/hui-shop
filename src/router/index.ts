@@ -50,6 +50,11 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/products/:id',
+    component: () => import('@/views/product/Product.vue'),
+    props:true
+  },
 ]
 
 export default createRouter({

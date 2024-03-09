@@ -1,20 +1,20 @@
 <template>
 
-    <div class="bottom-nav">
-      <router-link to="/home">
-        <svg-icon name="home"></svg-icon>
-      </router-link>
-      <router-link to="/search">
-        <svg-icon name="search"></svg-icon>
-      </router-link>
-      <router-link to="/cart">
-        <svg-icon name="cart"></svg-icon>
-      </router-link>
-      <router-link to="/user">
-        <svg-icon name="user"></svg-icon>
-      </router-link>
-    </div>
-  
+  <div class="bottom-nav">
+    <router-link to="/home">
+      <svg-icon name="home"></svg-icon>
+    </router-link>
+    <router-link to="/search">
+      <svg-icon name="search"></svg-icon>
+    </router-link>
+    <router-link to="/cart">
+      <svg-icon name="cart"></svg-icon>
+    </router-link>
+    <router-link to="/user">
+      <svg-icon name="user"></svg-icon>
+    </router-link>
+  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -45,5 +45,4 @@ a {
 .router-link-active {
   color: var(--height-color)
 }
-
 </style>
