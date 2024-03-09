@@ -10,8 +10,6 @@ const route = useRoute()
 const props = defineProps<{
   keyword?: string
 }>()
-console.log(props.keyword);
-
 // 加载数据
 const url = computed(() => {
   if (route.params.categoryId) {
