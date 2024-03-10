@@ -92,6 +92,8 @@
     "useInfiniteScroll ": true,
     "useInfiniteScroll": true,
     "refDebounced ": true,
-    "refDebounced": true
+    "refDebounced": true,
+    "useScroll": true,
+    "useWindowScroll": true
   }
 }

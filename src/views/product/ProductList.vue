@@ -52,10 +52,14 @@ useInfiniteScroll(scrollEle, () => {
   // 节流
   interval: 200
 })
+// 回到顶部
+const { y } = useScroll(scrollEle, { behavior: 'smooth' })
+const showBtn = computed(() => y.value > 400)
 
 </script>
 
 <template>
+  <svg-icon class="goUp" @click="y = 0" name="up" v-if="showBtn"></svg-icon>
   <div>
     <div class="product-list">
       <!-- /products/2 -->
@@ -72,6 +76,7 @@ useInfiniteScroll(scrollEle, () => {
     <p class="msg" v-show="!isFetching && data?.totalPages === pageNumber">
       ---- 已经加载到最后 ----
     </p>
+
   </div>
 </template>
 
@@ -109,5 +114,15 @@ useInfiniteScroll(scrollEle, () => {
 .msg {
   text-align: center;
   font-size: 14rem;
+}
+
+.goUp {
+  position: fixed;
+  bottom: 80rem;
+  right: 10rem;
+  border: 1px solid #000;
+  cursor: pointer;
+  border-radius: 8rem;
+  font-size: 30rem
 }
 </style>

@@ -15,7 +15,7 @@ export default defineConfig({
     autoImport({
       // 指定哪些需要自动导入
       imports: ['vue', 'vue-router', 'pinia', {
-        '@vueuse/core': ['createFetch', 'useInfiniteScroll','refDebounced']
+        '@vueuse/core': ['createFetch', 'useInfiniteScroll','refDebounced','useScroll']
       }],
       dts: './src/types/auto-imports.d.ts',
       dirs: ['./src/**/*'],
