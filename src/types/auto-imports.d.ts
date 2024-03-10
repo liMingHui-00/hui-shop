@@ -6,8 +6,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const Home: typeof import('../views/Home.vue')['default']
-  const SCROLLELE: typeof import('../constant/key')['SCROLLELE']
   const SCROLL_ELE: typeof import('../constant/key')['SCROLL_ELE']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const computed: typeof import('vue')['computed']
@@ -75,7 +73,6 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useFetch: typeof import('../utils/useFetch')['default']
-  const useFetch2: typeof import('@vueuse/core')['useFetch']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -83,7 +80,6 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useSlots: typeof import('vue')['useSlots']
-  const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -155,7 +151,6 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly svgComponentD: UnwrapRef<typeof import('./svg-component.d')['default']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
@@ -238,7 +233,6 @@ declare module '@vue/runtime-core' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly svgComponentD: UnwrapRef<typeof import('./svg-component.d')['default']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
