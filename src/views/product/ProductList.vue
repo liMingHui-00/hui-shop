@@ -121,6 +121,7 @@ const showBtn = computed(() => y.value > 400)
   bottom: 80rem;
   right: 10rem;
   border: 1px solid #000;
+  color: var(--height-color);
   cursor: pointer;
   border-radius: 8rem;
   font-size: 30rem
