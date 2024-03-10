@@ -71,13 +71,14 @@ declare global {
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useCounterStore: typeof import('../stores/counter')['useCounterStore']
+  const useCartStore: typeof import('../stores/cart')['useCartStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useFetch: typeof import('../utils/useFetch')['default']
   const useFetch2: typeof import('@vueuse/core')['useFetch']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
   const useLink: typeof import('vue-router')['useLink']
+  const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useScroll: typeof import('@vueuse/core')['useScroll']
@@ -162,12 +163,13 @@ declare module 'vue' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
+    readonly useCartStore: UnwrapRef<typeof import('../stores/cart')['useCartStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
@@ -244,12 +246,13 @@ declare module '@vue/runtime-core' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCounterStore: UnwrapRef<typeof import('../stores/counter')['useCounterStore']>
+    readonly useCartStore: UnwrapRef<typeof import('../stores/cart')['useCartStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useFetch: UnwrapRef<typeof import('../utils/useFetch')['default']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>

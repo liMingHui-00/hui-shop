@@ -17,3 +17,4 @@ interface Page<T>{
   currentPage:number
   itemsPerPage:number
 }
+type  CartItem = Product & {count:number}

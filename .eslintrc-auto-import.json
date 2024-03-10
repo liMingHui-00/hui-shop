@@ -94,6 +94,8 @@
     "refDebounced ": true,
     "refDebounced": true,
     "useScroll": true,
-    "useWindowScroll": true
+    "useWindowScroll": true,
+    "useCartStore": true,
+    "useLocalStorage": true
   }
 }
